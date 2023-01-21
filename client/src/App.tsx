@@ -1,6 +1,7 @@
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import AppState from './context/AppState';
 import './App.css';
-import Garage from './pages/garage/Garage';
+import GarageContainer from './pages/garage/GarageContainer';
 import NotFound from './pages/notFound/NotFound';
 import Winners from './pages/winners/Winners';
 
@@ -17,12 +18,14 @@ function App() {
           </li>
         </ul>
       </nav>
-      <Routes>
-        <Route path='/' element={<Navigate to='/garage' />} />
-        <Route path='/garage' element={<Garage />} />
-        <Route path='/winners' element={<Winners />} />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
+      <AppState>
+        <Routes>
+          <Route path='/' element={<Navigate to='/garage' />} />
+          <Route path='/garage' element={<GarageContainer />} />
+          <Route path='/winners' element={<Winners />} />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+      </AppState>
     </>
   );
 }

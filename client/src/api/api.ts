@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Car } from '../interfaces/interfaces';
+import { CarType } from '../interfaces/interfaces';
 
 const baseURL = 'http://localhost:5000';
 
@@ -9,19 +9,15 @@ const endpoints = {
   engine: '/engine',
 };
 
-type GetCarsResponse = {
-  data: Car[];
-}
-
 const API = axios.create({ baseURL });
 
 export const garageAPI = {
   getCarsByPage: async (page: number, limit = 5) => {
     try {
-      const { data, headers } = await API.get<GetCarsResponse>(endpoints.garage, { params: { _page: page, _limit: limit } });
+      const { data, headers } = await API.get<CarType[]>(endpoints.garage, { params: { _page: page, _limit: limit } });
       const count = Number(headers['x-total-count']);
 
-      return {data, count};
+      return { data, count };
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.log('error message: ', error.message);
@@ -33,5 +29,3 @@ export const garageAPI = {
     }
   },
 };
-
-garageAPI.getCarsByPage(1, 3);
