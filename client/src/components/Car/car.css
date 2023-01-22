@@ -1,0 +1,59 @@
+.car {
+  margin-bottom: 20px;
+}
+
+.car__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.car__name {
+  color: #E3CF4B;
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 20px;
+}
+
+.car__main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 2px dashed white;
+}
+
+.ctrl-btn {
+  font-size: 16px;
+  color: #E4F8B3;
+  background-color: inherit;
+  border: 1px solid #E4F8B3;
+  border-radius: 4px;
+  padding: 2px 4px;
+  transition: 0.3s;
+}
+
+.ctrl-btn:not(:last-child) {
+  margin-right: 7px;
+}
+
+.ctrl-btn:disabled {
+  color: #676869;
+  border-color: #676869;
+}
+
+.car__track {
+  position: relative;
+  flex: 1;
+}
+
+.track__finish img {
+  width: 40px;
+}
+
+.track__finish {
+  position: absolute;
+  right: 70px;
+  top: 0;
+}

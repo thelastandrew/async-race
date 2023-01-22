@@ -23,6 +23,7 @@ const GarageContainer = () => {
   return <Garage
     cars={cars}
     totalCars={totalCars}
+    page={page}
   />;
 };
 

@@ -1,16 +1,20 @@
 import { CarType } from '../../interfaces/interfaces';
+import CarsList from '../../components/CarsList/CarsList';
+import './Garage.css';
 
 type PropsType = {
   cars: CarType[],
   totalCars: number,
+  page: number,
 }
 
-const Garage = ({ cars, totalCars }: PropsType) => {
+const Garage = ({ cars, totalCars, page }: PropsType) => {
 
   return (
-    <div>
-      <h3>Cars ({totalCars})</h3>
-      { cars.map(car => <div key={car.id} style={{color: car.color}}>{car.name}</div>) }
+    <div className='garage'>
+      <h1 className='garage__title'>Garage ({totalCars})</h1>
+      <h4 className='garage__page'>Page #{page}</h4>
+      <CarsList cars={cars}/>
     </div>
   );
 };

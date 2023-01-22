@@ -1,0 +1,26 @@
+.my-button {
+  text-transform: uppercase;
+  background-color: #E4EDFD;
+  color: black;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 0 10px;
+  border-radius: 3px;
+  border: none;
+  border-bottom: 3px solid #3F7AD8;
+  transition: 0.3s;
+}
+
+.my-button:active {
+  background-color: #3F7AD8;
+}
+
+.my-button:disabled {
+  color: #676869;
+  background-color: #cecfcf;
+  border-bottom-color: #676869;
+}
+
+.my-button:not(:last-child) {
+  margin-right: 5px;
+}

@@ -17,6 +17,10 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: auto;
+}
+
 body {
   margin: 0;
   padding: 5px;
