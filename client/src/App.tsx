@@ -1,6 +1,6 @@
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import AppState from './context/AppState';
-import './App.css';
+import s from './App.module.css';
 import GarageContainer from './pages/garage/GarageContainer';
 import NotFound from './pages/notFound/NotFound';
 import Winners from './pages/winners/Winners';
@@ -8,8 +8,8 @@ import Winners from './pages/winners/Winners';
 function App() {
   return (
     <>
-      <nav className='navbar'>
-        <ul className='nav-links'>
+      <nav className={s.navbar}>
+        <ul className={s.navLinks}>
           <li>
             <Link to='/garage'>Garage</Link>
           </li>

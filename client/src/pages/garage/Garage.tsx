@@ -1,7 +1,7 @@
 import { CarType } from '../../interfaces/interfaces';
 import GarageControls from '../../components/GarageControls/GarageControls';
 import CarsList from '../../components/CarsList/CarsList';
-import './Garage.css';
+import s from './Garage.module.css';
 
 type PropsType = {
   cars: CarType[],
@@ -12,10 +12,10 @@ type PropsType = {
 const Garage = ({ cars, totalCars, page }: PropsType) => {
 
   return (
-    <div className='garage'>
+    <div className={s.garage}>
       <GarageControls />
-      <h1 className='garage__title'>Garage ({totalCars})</h1>
-      <h4 className='garage__page'>Page #{page}</h4>
+      <h1 className={s.garageTitle}>Garage ({totalCars})</h1>
+      <h4 className={s.garagePage}>Page #{page}</h4>
       <CarsList cars={cars}/>
     </div>
   );

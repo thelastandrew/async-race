@@ -1,13 +1,14 @@
-.nav-links {
+.navLinks {
   display: flex;
   flex-direction: row;
   margin-bottom: 50px;
 }
 
-.nav-links li {
+.navLinks li {
   text-transform: uppercase;
   background-color: #E4F8B3;
   color: black;
+  font-size: 14px;
   font-weight: bold;
   padding-left: 4px;
   padding-right: 4px;
@@ -16,11 +17,11 @@
   transition: 0.3s;
 }
 
-.nav-links li:active {
+.navLinks li:active {
   background-color: #90BB4E;
   color: darkgrey;
 }
 
-.nav-links li:not(:last-child) {
+.navLinks li:not(:last-child) {
   margin-right: 5px;
 }

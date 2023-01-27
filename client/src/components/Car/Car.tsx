@@ -2,7 +2,7 @@ import { CarType } from '../../interfaces/interfaces';
 import CarImg from './CarImg';
 import Button from '../../UI/Button/Button';
 import flag from './flag.png'
-import './car.css';
+import s from './Car.module.css';
 
 
 const Car = ({ car }: { car: CarType }) => {
@@ -12,24 +12,24 @@ const Car = ({ car }: { car: CarType }) => {
   const handleStop = () => console.log('stop ', car.id);
 
   return (
-    <div className='car'>
-      <div className='car__header'>
+    <div className={s.car}>
+      <div className={s.carHeader}>
         <Button handleClick={handleSelect}>Select</Button>
         <Button handleClick={handleRemove}>Remove</Button>
-        <h5 className='car__name'>{car.name}</h5>
+        <h5 className={s.carName}>{car.name}</h5>
       </div>
-      <div className='car__main'>
+      <div className={s.carMain}>
         <button
-          className='ctrl-btn'
+          className={s.ctrlBtn}
           onClick={handleStart}
         >A</button>
         <button
-          className='ctrl-btn'
+          className={s.ctrlBtn}
           onClick={handleStop}
         >B</button>
-        <div className='car__track'>
+        <div className={s.carTrack}>
           <CarImg color={car.color} />
-          <div className='track__finish'>
+          <div className={s.trackFinish}>
             <img src={flag} alt='flag'/>
           </div>
         </div>
