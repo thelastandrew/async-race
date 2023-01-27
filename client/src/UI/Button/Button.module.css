@@ -1,4 +1,4 @@
-.my-button {
+.myButton {
   text-transform: uppercase;
   background-color: #E4EDFD;
   color: black;
@@ -11,16 +11,16 @@
   transition: 0.3s;
 }
 
-.my-button:active {
+.myButton:active {
   background-color: #3F7AD8;
 }
 
-.my-button:disabled {
+.myButton:disabled {
   color: #676869;
   background-color: #cecfcf;
   border-bottom-color: #676869;
 }
 
-.my-button:not(:last-child) {
+.myButton:not(:last-child) {
   margin-right: 5px;
 }

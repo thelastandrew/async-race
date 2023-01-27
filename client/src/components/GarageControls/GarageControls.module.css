@@ -1,0 +1,27 @@
+.garageControls {
+  margin-bottom: 50px;
+}
+
+.garageControls > div:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.garageControls > div > input {
+  margin-right: 5px;
+}
+
+.garageControls > div > input[type="text"] {
+  padding-left:  5px;
+  padding-right: 5px;
+}
+
+.garageControls > div > input[type="color"] {
+  height: 20px;
+}
+
+.createBlock,
+.updateBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

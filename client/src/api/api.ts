@@ -28,4 +28,12 @@ export const garageAPI = {
       }
     }
   },
+
+  createCar: async (name: string, color: string): Promise<void> => {
+    API.post(endpoints.garage, { name, color }, {
+      headers: {
+        'content-type': 'application/json',
+      }
+    }).then(response => response.data);
+  },
 };

@@ -1,4 +1,4 @@
-import './button.css';
+import s from './Button.module.css';
 
 type PropsType = {
   handleClick: () => void;
@@ -6,7 +6,7 @@ type PropsType = {
 };
 
 const Button = ({ handleClick, children }: PropsType) => {
-  return <button className='my-button' onClick={handleClick}>{ children }</button>
+  return <button className={s.myButton} onClick={handleClick}>{ children }</button>
 };
 
 export default Button;
