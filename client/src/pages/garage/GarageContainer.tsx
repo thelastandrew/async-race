@@ -3,6 +3,7 @@ import AppContext from '../../context/AppContext';
 import { garageAPI } from '../../api/api';
 import { CarType } from '../../interfaces/interfaces';
 import Garage from './Garage';
+import { ACTION_TYPES } from '../../context/actions';
 
 type ResponseType = {
   data: CarType[],
@@ -10,7 +11,11 @@ type ResponseType = {
 };
 
 const GarageContainer = () => {
-  const { cars, totalCars, page, limit, setCars, setTotal } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
+  const { cars, totalCars, page, limit } = state.garage;
+
+  const setCars = (cars: CarType[]) => dispatch({ type: ACTION_TYPES.SET_CARS, payload: cars });
+  const setTotal = (totalCars: number) => dispatch({ type: ACTION_TYPES.SET_TOTAL, payload: totalCars });
 
   useEffect(() => {
     garageAPI.getCarsByPage(page, limit)

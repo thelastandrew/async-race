@@ -1,22 +1,35 @@
-import { createContext } from 'react';
+import React, { createContext } from 'react';
 import { CarType } from '../interfaces/interfaces';
 
-export type StateType = {
+// Garage State
+export type GarageStateType = {
   cars: CarType[];
   totalCars: number;
   page: number;
   limit: number;
-  setCars: (cars: CarType[]) => void,
-  setTotal: (totalPages: number) => void,
-}
+};
 
-export const initialState: StateType = {
+export const initialGarageState: GarageStateType = {
   cars: [],
   totalCars: 0,
   page: 1,
   limit: 5,
-  setCars: (cars: CarType[]) => { },
-  setTotal: (totalPages: number) => { },
 };
 
-export default createContext(initialState);
+
+//Global state
+export type StateType = {
+  garage: GarageStateType,
+};
+
+export const initialState = {
+  garage: initialGarageState,
+}
+
+export default createContext<{
+  state: StateType,
+  dispatch: React.Dispatch<any>
+}>({
+  state: initialState,
+  dispatch: () => null,
+});
