@@ -18,3 +18,5 @@ export const generateCarName = (): string => {
 
   return `${randomBrand} ${randomModal}`;
 };
+
+export const getTotalPages = (totalCars: number, limit: number): number => Math.ceil(totalCars / limit);

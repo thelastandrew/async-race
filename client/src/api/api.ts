@@ -19,13 +19,19 @@ export const garageAPI = {
 
       return { data, count };
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.log('error message: ', error.message);
-        return error.message;
-      } else {
-        console.log('unexpected error: ', error);
-        return 'An unexpected error occurred';
-      }
+      console.log(error);
+      return { data: [] as CarType[], count: 0 }
     }
   },
+
+  createNewCar: async (name: string, color: string) => {
+    try {
+      const { data } = await API.post<CarType>(endpoints.garage, { name, color }, { headers: { 'Content-Type': 'application/json' } });
+
+      return data
+    } catch (error) {
+      console.log(error);
+      return { id: 0, name: '', color: '' };
+    }
+  }
 };
