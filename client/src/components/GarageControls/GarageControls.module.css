@@ -18,9 +18,3 @@
 .garageControls > div > input[type="color"] {
   height: 20px;
 }
-
-.updateBlock {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}

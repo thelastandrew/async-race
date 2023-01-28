@@ -1,11 +1,11 @@
 import { CarType } from '../../interfaces/interfaces';
-import Car from '../Car/Car';
+import CarContainer from '../Car/CarContainer';
 
 
 const CarsList = ({ cars }: { cars: CarType[] }) => {
   return (
     <div>
-      {cars.map(car => <Car key={car.id} car={car} />)}
+      {cars.map(car => <CarContainer key={car.id} car={car} />)}
     </div>
   );
 };

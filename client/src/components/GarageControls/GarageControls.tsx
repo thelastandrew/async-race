@@ -1,21 +1,13 @@
 import Button from '../../UI/Button/Button';
 import CreateBlockContainer from '../CreateBlock/CreateBlockContainer';
+import UpdateBlockContainer from '../UpdateBlock/UpdateBlockContainer';
 import s from './GarageControls.module.css';
 
 const GarageControls = () => {
-  const handleUpdate = () => {
-    console.log('updating car...');
-  };
-
   return (
     <div className={s.garageControls}>
       <CreateBlockContainer />
-      <div className={s.updateBlock}>
-        <input type='text'
-        />
-        <input type='color' />
-        <Button handleClick={handleUpdate}>Update</Button>
-      </div>
+      <UpdateBlockContainer />
       <div className={s.actionsBlock}>
         <Button handleClick={() => {}}>Race</Button>
         <Button handleClick={() => {}}>Reset</Button>

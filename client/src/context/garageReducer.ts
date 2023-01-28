@@ -1,4 +1,4 @@
-import { GarageStateType } from './AppContext';
+import { GarageState } from './AppContext';
 import { ACTION_TYPES } from './actions';
 import { CarType } from '../interfaces/interfaces';
 
@@ -7,7 +7,7 @@ export type GarageAction = {
   payload: CarType[] | CarType | number,
 }
 
-const garageReducer = (state: GarageStateType, action: GarageAction) => {
+const garageReducer = (state: GarageState, action: GarageAction) => {
   switch (action.type) {
     case ACTION_TYPES.SET_CARS: {
       return { ...state, cars: action.payload as CarType[] };
@@ -18,6 +18,10 @@ const garageReducer = (state: GarageStateType, action: GarageAction) => {
     case ACTION_TYPES.ADD_CAR: {
       return { ...state, cars: [...state.cars, action.payload as CarType] }
     }
+    case ACTION_TYPES.UPDATE_CARS: {
+      const updatedCars = state.cars.map(car => car.id === (action.payload as CarType).id ? action.payload as CarType : car);
+      return { ...state, cars: updatedCars };
+    }
     default: {
       return state;
     }
@@ -27,5 +31,6 @@ const garageReducer = (state: GarageStateType, action: GarageAction) => {
 export const setCars = (cars: CarType[]) => ({ type: ACTION_TYPES.SET_CARS, payload: cars });
 export const setTotal = (totalCars: number) => ({ type: ACTION_TYPES.SET_TOTAL, payload: totalCars });
 export const addCar = (car: CarType) => ({ type: ACTION_TYPES.ADD_CAR, payload: car });
+export const updateCars = (car: CarType) => ({ type: ACTION_TYPES.UPDATE_CARS, payload: car});
 
 export default garageReducer;

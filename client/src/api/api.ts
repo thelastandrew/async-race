@@ -33,5 +33,20 @@ export const garageAPI = {
       console.log(error);
       return { id: 0, name: '', color: '' };
     }
-  }
+  },
+
+  updateCar: async (id: number, name: string, color: string) => {
+    try {
+      const { data } = await API.put(`${endpoints.garage}/${id}`, { name, color }, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      return { id: 0, name: '', color: '' };
+    }
+  },
 };

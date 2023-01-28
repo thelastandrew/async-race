@@ -4,9 +4,12 @@ import Button from '../../UI/Button/Button';
 import flag from './flag.png'
 import s from './Car.module.css';
 
+type CarProps = {
+  car: CarType,
+  setCarToUpd: () => void,
+}
 
-const Car = ({ car }: { car: CarType }) => {
-  const handleSelect = () => console.log('select ', car.id);
+const Car = ({ car, setCarToUpd }: CarProps) => {
   const handleRemove = () => console.log('remove ', car.id);
   const handleStart = () => console.log('start ', car.id);
   const handleStop = () => console.log('stop ', car.id);
@@ -14,7 +17,7 @@ const Car = ({ car }: { car: CarType }) => {
   return (
     <div className={s.car}>
       <div className={s.carHeader}>
-        <Button handleClick={handleSelect}>Select</Button>
+        <Button handleClick={setCarToUpd}>Select</Button>
         <Button handleClick={handleRemove}>Remove</Button>
         <h5 className={s.carName}>{car.name}</h5>
       </div>
