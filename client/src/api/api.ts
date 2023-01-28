@@ -49,4 +49,7 @@ export const garageAPI = {
       return { id: 0, name: '', color: '' };
     }
   },
+
+  deleteCar: (id: number) => API.delete(`${endpoints.garage}/${id}`)
+    .catch(error => console.log(error)),
 };

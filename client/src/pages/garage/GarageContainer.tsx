@@ -11,15 +11,15 @@ type ResponseType = {
 
 const GarageContainer = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { cars, totalCars, page, limit, setCars, setTotal } = state.garage;
+  const { cars, totalCars, page, setCars, setTotal } = state.garage;
 
   useEffect(() => {
-    garageAPI.getCarsByPage(page, limit)
+    garageAPI.getCarsByPage(page)
       .then(response => {
         dispatch(setCars((response as ResponseType).data));
         dispatch(setTotal((response as ResponseType).count));
       });
-  }, [page, limit]);
+  }, [page]);
 
   return <Garage
     cars={cars}
