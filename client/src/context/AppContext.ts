@@ -1,6 +1,6 @@
 import React, { createContext } from 'react';
 import { CarType } from '../interfaces/interfaces';
-import { GarageAction, setCars, setTotal, addCar, updateCars } from './garageReducer';
+import { GarageAction, setCars, setTotal, setGaragePage, addCar, updateCars } from './garageReducer';
 import { NewCarAction, updateName, updateColor } from './newCarReducer';
 import { generateColor } from '../utils/utils';
 import { CarToUpdActions, setCarToUpdId, setCarToUpdName, setCarToUpdColor, toggleIsUpdating } from './carToUpdReducer.ts';
@@ -13,6 +13,7 @@ export type GarageState = {
   limit: number;
   setCars: (cars: CarType[]) => GarageAction,
   setTotal: (totalCars: number) => GarageAction,
+  setGaragePage: (page: number) => GarageAction,
   addCar: (car: CarType) => GarageAction,
   updateCars: (car: CarType) => GarageAction,
 };
@@ -24,6 +25,7 @@ export const initGarageState: GarageState = {
   limit: 5,
   setCars,
   setTotal,
+  setGaragePage,
   addCar,
   updateCars,
 };

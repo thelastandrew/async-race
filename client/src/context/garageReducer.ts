@@ -15,6 +15,9 @@ const garageReducer = (state: GarageState, action: GarageAction) => {
     case ACTION_TYPES.SET_TOTAL: {
       return { ...state, totalCars: action.payload as number };
     }
+    case ACTION_TYPES.SET_GARAGE_PAGE: {
+      return { ...state, page: action.payload as number };
+    }
     case ACTION_TYPES.ADD_CAR: {
       return { ...state, cars: [...state.cars, action.payload as CarType] }
     }
@@ -30,6 +33,7 @@ const garageReducer = (state: GarageState, action: GarageAction) => {
 
 export const setCars = (cars: CarType[]) => ({ type: ACTION_TYPES.SET_CARS, payload: cars });
 export const setTotal = (totalCars: number) => ({ type: ACTION_TYPES.SET_TOTAL, payload: totalCars });
+export const setGaragePage = (page: number) => ({ type: ACTION_TYPES.SET_GARAGE_PAGE, payload: page });
 export const addCar = (car: CarType) => ({ type: ACTION_TYPES.ADD_CAR, payload: car });
 export const updateCars = (car: CarType) => ({ type: ACTION_TYPES.UPDATE_CARS, payload: car});
 

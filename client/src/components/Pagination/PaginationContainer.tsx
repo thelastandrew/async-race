@@ -4,14 +4,14 @@ import Pagination from './Pagination';
 
 const PaginationContainer = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { page, totalCars, limit } = state.garage;
+  const { page, totalCars, limit, setGaragePage } = state.garage;
 
   const handlePrev = () => {
-    console.log('prev...');
+    dispatch(setGaragePage(page - 1));
   };
 
   const handleNext = () => {
-    console.log('next...');
+    dispatch(setGaragePage(page + 1));
   };
 
   return <Pagination
