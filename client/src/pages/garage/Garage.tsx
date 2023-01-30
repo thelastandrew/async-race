@@ -2,6 +2,7 @@ import { CarType } from '../../interfaces/interfaces';
 import GarageControls from '../../components/GarageControls/GarageControls';
 import CarsList from '../../components/CarsList/CarsList';
 import s from './Garage.module.css';
+import PaginationContainer from '../../components/Pagination/PaginationContainer';
 
 type PropsType = {
   cars: CarType[],
@@ -17,6 +18,7 @@ const Garage = ({ cars, totalCars, page }: PropsType) => {
       <h1 className={s.garageTitle}>Garage ({totalCars})</h1>
       <h4 className={s.garagePage}>Page #{page}</h4>
       <CarsList cars={cars}/>
+      <PaginationContainer />
     </div>
   );
 };
