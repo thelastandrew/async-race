@@ -1,15 +1,7 @@
 import { useReducer } from 'react';
 import AppContext, { initState, StateType } from './AppContext';
-import garageReducer, { GarageAction } from './garageReducer';
-import newCarReducer, { NewCarAction } from './newCarReducer';
-import carToUpdReducer, { CarToUpdActions } from './carToUpdReducer.ts';
 
-type ActionType = GarageAction | NewCarAction | CarToUpdActions;
-
-const mainReducer = (state: StateType, action: ActionType) => ({
-  garage: garageReducer(state.garage, action as GarageAction),
-  newCar: newCarReducer(state.newCar, action as NewCarAction),
-  carToUpd: carToUpdReducer(state.carToUpd, action as CarToUpdActions),
+const mainReducer = (state: StateType, action: { type: string }) => ({
 });
 
 const AppState = ({ children }: { children: JSX.Element }) => {

@@ -6,19 +6,19 @@ import s from './Car.module.css';
 
 type CarProps = {
   car: CarType,
-  setCarToUpd: () => void,
-  removeCar: () => void,
 }
 
-const Car = ({ car, setCarToUpd, removeCar }: CarProps) => {
+const Car = ({ car }: CarProps) => {
   const handleStart = () => console.log('start ', car.id);
   const handleStop = () => console.log('stop ', car.id);
+  const handleSelect = () => console.log('select', car.id);
+  const handleRemove = () => console.log('remove', car.id);
 
   return (
     <div className={s.car}>
       <div className={s.carHeader}>
-        <Button handleClick={setCarToUpd}>Select</Button>
-        <Button handleClick={removeCar}>Remove</Button>
+        <Button handleClick={handleSelect}>Select</Button>
+        <Button handleClick={handleRemove}>Remove</Button>
         <h5 className={s.carName}>{car.name}</h5>
       </div>
       <div className={s.carMain}>

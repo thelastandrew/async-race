@@ -1,30 +1,24 @@
-import { useContext, useEffect } from 'react'
-import AppContext from '../../context/AppContext';
+import { useState, useEffect } from 'react'
 import { garageAPI } from '../../api/api';
 import { CarType } from '../../interfaces/interfaces';
 import Garage from './Garage';
 
-type ResponseType = {
-  data: CarType[],
-  count: number,
-};
-
 const GarageContainer = () => {
-  const { state, dispatch } = useContext(AppContext);
-  const { cars, totalCars, page, setCars, setTotal } = state.garage;
+  const [cars, setCars] = useState([] as CarType[])
+  const [totalCars, setTotalCars] = useState(0);
 
   useEffect(() => {
-    garageAPI.getCarsByPage(page)
+    garageAPI.getCarsByPage(1)
       .then(response => {
-        dispatch(setCars((response as ResponseType).data));
-        dispatch(setTotal((response as ResponseType).count));
+        setCars(response.data);
+        setTotalCars(response.count);
       });
-  }, [page]);
+  }, []);
 
   return <Garage
     cars={cars}
     totalCars={totalCars}
-    page={page}
+    page={1}
   />;
 };
 
