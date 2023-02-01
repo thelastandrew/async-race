@@ -8,16 +8,20 @@ type PropsType = {
   cars: CarType[],
   totalCars: number,
   page: number,
+  isFetchingCars: boolean,
 }
 
-const Garage = ({ cars, totalCars, page }: PropsType) => {
+const Garage = ({ cars, totalCars, page, isFetchingCars }: PropsType) => {
 
   return (
     <div className={s.garage}>
       <GarageControls />
       <h1 className={s.garageTitle}>Garage ({totalCars})</h1>
       <h4 className={s.garagePage}>Page #{page}</h4>
-      <CarsList cars={cars}/>
+      {isFetchingCars
+        ? <p>Loading ...</p>
+        : <CarsList cars={cars} />
+      }
       <PaginationContainer />
     </div>
   );
