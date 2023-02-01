@@ -4,11 +4,12 @@ import Garage from './Garage';
 
 const GarageContainer = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { cars, page, totalCars, isFetchingCars, getCars } = state.garage;
+  const { cars, page, totalCars, limit, isFetchingCars, getCars, checkPgAvl } = state.garage;
 
 
   useEffect(() => {
     getCars(page)(dispatch);
+    checkPgAvl(page, totalCars, limit)(dispatch);
   }, [page]);
 
   return <Garage

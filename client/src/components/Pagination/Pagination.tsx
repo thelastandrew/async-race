@@ -1,17 +1,24 @@
 import Button from '../../UI/Button/Button';
 import s from './Pagination.module.css';
 
-const Pagination = () => {
-  const handlePrev = () => console.log('move to prev page');
-  const handleNext = () => console.log('move to next page');
+type PropsType = {
+  setPrevPage: () => void;
+  setNextPage: () => void;
+  isPrevAvl: boolean;
+  isNextPgAvl: boolean;
+};
+
+const Pagination = ({ setPrevPage, setNextPage, isPrevAvl, isNextPgAvl }: PropsType) => {
 
   return (
     <div className={s.pagination}>
       <Button
-        handleClick={handlePrev}
+        handleClick={setPrevPage}
+        disabled={!isPrevAvl}
       >Prev</Button>
       <Button
-        handleClick={handleNext}
+        handleClick={setNextPage}
+        disabled={!isNextPgAvl}
       >Next</Button>
     </div>
   );
