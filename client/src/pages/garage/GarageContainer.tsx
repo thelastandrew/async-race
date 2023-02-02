@@ -9,8 +9,10 @@ const GarageContainer = () => {
 
   useEffect(() => {
     getCars(page)(dispatch);
+  }, [page]);
+  useEffect(() => {
     checkPgAvl(page, totalCars)(dispatch);
-  }, [page, totalCars]);
+  }, [page,totalCars]);
 
   return <Garage
     cars={cars}

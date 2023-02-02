@@ -5,20 +5,20 @@ import flag from './flag.png'
 import s from './Car.module.css';
 
 type CarProps = {
-  car: CarType,
+  car: CarType;
+  deleteCar: (id: number) => void;
 }
 
-const Car = ({ car }: CarProps) => {
+const Car = ({ car, deleteCar }: CarProps) => {
   const handleStart = () => console.log('start ', car.id);
   const handleStop = () => console.log('stop ', car.id);
   const handleSelect = () => console.log('select', car.id);
-  const handleRemove = () => console.log('remove', car.id);
 
   return (
     <div className={s.car}>
       <div className={s.carHeader}>
         <Button handleClick={handleSelect}>Select</Button>
-        <Button handleClick={handleRemove}>Remove</Button>
+        <Button handleClick={() => deleteCar(car.id)}>Remove</Button>
         <h5 className={s.carName}>{car.name}</h5>
       </div>
       <div className={s.carMain}>
