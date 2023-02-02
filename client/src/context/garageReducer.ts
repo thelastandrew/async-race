@@ -11,6 +11,7 @@ const setTotalCarsAC = (totalCars: number) => ({ type: ACTION_TYPES.SET_TOTAL_CA
 const toggleIsFetchingCarsAC = (isFetchingCars: boolean) => ({ type: ACTION_TYPES.TOGGLE_IS_FETCHING_CARS, payload: isFetchingCars });
 const toggleIsPrevAvlAC = (isAvl: boolean) => ({ type: ACTION_TYPES.TOGGLE_IS_PREV_GARAGE_PG_AVL, payload: isAvl });
 const toggleIsNextAvlAC = (isAvl: boolean) => ({ type: ACTION_TYPES.TOGGLE_IS_NEXT_GARAGE_PG_AVL, payload: isAvl });
+const addCarAC = (car: CarType) => ({ type: ACTION_TYPES.ADD_CAR, payload: car });
 
 // Methods
 const getCars = (page: number) => (dispatch: Dispatch<any>) => {
@@ -27,18 +28,28 @@ const setGaragePage = (page: number) => (dispatch: Dispatch<any>) => {
   dispatch(setGaragePageAC(page));
 };
 
-const checkPgAvl = (page: number, totalCars: number, limit: number) => (dispatch: Dispatch<any>) => {
+const checkPgAvl = (page: number, totalCars: number, limit = 5) => (dispatch: Dispatch<any>) => {
   const totalPages = getTotalPages(totalCars, limit);
   if (page === 1) {
     dispatch(toggleIsPrevAvlAC(false));
   } else {
     dispatch(toggleIsPrevAvlAC(true));
   }
-  if (page === totalPages || page > totalPages) {
+  if (page >= totalPages) {
     dispatch(toggleIsNextAvlAC(false));
   } else {
     dispatch(toggleIsNextAvlAC(true));
   }
+};
+
+const addCar = (name: string, color: string, cars: CarType[], totalCars: number, limit = 5) => (dispatch: Dispatch<any>) => {
+  garageAPI.createNewCar(name, color)
+    .then(response => {
+      dispatch(setTotalCarsAC(totalCars + 1));
+      if (cars.length < limit) {
+        dispatch(addCarAC(response));
+      }
+    });
 };
 
 export type GarageState = {
@@ -52,11 +63,12 @@ export type GarageState = {
   getCars: typeof getCars;
   setGaragePage: typeof setGaragePage;
   checkPgAvl: typeof checkPgAvl;
+  addCar: typeof addCar;
 };
 
 export type GarageAction = {
   type: ACTION_TYPES;
-  payload: number | boolean | CarType[];
+  payload: number | boolean | CarType[] | CarType;
 };
 
 export const initGarageState: GarageState = {
@@ -70,6 +82,7 @@ export const initGarageState: GarageState = {
   getCars,
   setGaragePage,
   checkPgAvl,
+  addCar,
 };
 
 const garageReducer = (state: GarageState, action: GarageAction) => {
@@ -91,6 +104,9 @@ const garageReducer = (state: GarageState, action: GarageAction) => {
     }
     case ACTION_TYPES.TOGGLE_IS_NEXT_GARAGE_PG_AVL: {
       return { ...state, isNextPgAvl: action.payload as boolean };
+    }
+    case ACTION_TYPES.ADD_CAR: {
+      return { ...state, cars: [...state.cars, action.payload as CarType] };
     }
     default: {
       return state;
