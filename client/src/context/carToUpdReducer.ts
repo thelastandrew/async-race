@@ -2,29 +2,29 @@ import { Dispatch } from 'react';
 import { ACTION_TYPES } from './actions';
 
 // Action creators
-const toggleIsUpdating = (isUpdating: boolean) => ({ type: ACTION_TYPES.TOGGLE_IS_UPDATING, payload: isUpdating });
-const setIdToUpd = (id: number) => ({ type: ACTION_TYPES.SET_ID_TO_UPD, payload: id });
-const setNameToUpd = (name: string) => ({ type: ACTION_TYPES.SET_NAME_TO_UPD, payload: name });
-const setColorToUpd = (color: string) => ({ type: ACTION_TYPES.SET_COLOR_TO_UPD, payload: color });
+const toggleIsUpdatingAC = (isUpdating: boolean) => ({ type: ACTION_TYPES.TOGGLE_IS_UPDATING, payload: isUpdating });
+const setIdToUpdAC = (id: number) => ({ type: ACTION_TYPES.SET_ID_TO_UPD, payload: id });
+const setNameToUpdAC = (name: string) => ({ type: ACTION_TYPES.SET_NAME_TO_UPD, payload: name });
+const setColorToUpdAC = (color: string) => ({ type: ACTION_TYPES.SET_COLOR_TO_UPD, payload: color });
 
 // Methods
 const setCarToUpd = (id: number, name: string, color: string) => (dispatch: Dispatch<any>) => {
-  dispatch(toggleIsUpdating(true));
-  dispatch(setIdToUpd(id));
-  dispatch(setNameToUpd(name));
-  dispatch(setColorToUpd(color));
+  dispatch(toggleIsUpdatingAC(true));
+  dispatch(setIdToUpdAC(id));
+  dispatch(setNameToUpdAC(name));
+  dispatch(setColorToUpdAC(color));
 };
 
 const updateName = (name: string) => (dispatch: Dispatch<any>) => {
-  dispatch(setNameToUpd(name));
+  dispatch(setNameToUpdAC(name));
 };
 
 const updateColor = (color: string) => (dispatch: Dispatch<any>) => {
-  dispatch(setColorToUpd(color));
+  dispatch(setColorToUpdAC(color));
 };
 
 const setIsUpdating = (isUpdating: boolean) => (dispatch: Dispatch<any>) => {
-  dispatch(toggleIsUpdating(isUpdating));
+  dispatch(toggleIsUpdatingAC(isUpdating));
 };
 
 export type CarToUpdState = {

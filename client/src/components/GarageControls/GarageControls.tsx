@@ -1,6 +1,7 @@
 import Button from '../../UI/Button/Button';
 import CreateBlockContainer from '../CreateBlock/CreateBlockContainer';
 import UpdateBlockContainer from '../UpdateBlock/UpdateBlockContainer';
+import GenerateCarsContainer from '../GenerateCars/GenerateCarsContainer';
 import s from './GarageControls.module.css';
 
 const GarageControls = () => {
@@ -11,7 +12,7 @@ const GarageControls = () => {
       <div className={s.actionsBlock}>
         <Button handleClick={() => {}}>Race</Button>
         <Button handleClick={() => {}}>Reset</Button>
-        <Button handleClick={() => {}}>Generate cars</Button>
+        <GenerateCarsContainer />
       </div>
     </div>
   );

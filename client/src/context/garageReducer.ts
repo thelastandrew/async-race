@@ -2,7 +2,7 @@ import { Dispatch } from 'react';
 import { ACTION_TYPES } from './actions';
 import { CarType } from '../interfaces/interfaces';
 import { garageAPI } from '../api/api';
-import { getTotalPages } from '../utils/utils';
+import { generateCarName, generateColor, getTotalPages } from '../utils/utils';
 
 // Action creators
 const setCarsAC = (cars: CarType[]) => ({ type: ACTION_TYPES.SET_CARS, payload: cars });
@@ -12,7 +12,7 @@ const toggleIsFetchingCarsAC = (isFetchingCars: boolean) => ({ type: ACTION_TYPE
 const toggleIsPrevAvlAC = (isAvl: boolean) => ({ type: ACTION_TYPES.TOGGLE_IS_PREV_GARAGE_PG_AVL, payload: isAvl });
 const toggleIsNextAvlAC = (isAvl: boolean) => ({ type: ACTION_TYPES.TOGGLE_IS_NEXT_GARAGE_PG_AVL, payload: isAvl });
 const addCarAC = (car: CarType) => ({ type: ACTION_TYPES.ADD_CAR, payload: car });
-const updateCarsList = (car: CarType) => ({ type: ACTION_TYPES.UPDATE_CARS_LIST, payload: car });
+const updateCarsListAC = (car: CarType) => ({ type: ACTION_TYPES.UPDATE_CARS_LIST, payload: car });
 
 // Methods
 const getCars = (page: number) => (dispatch: Dispatch<any>) => {
@@ -56,8 +56,27 @@ const addCar = (name: string, color: string, cars: CarType[], totalCars: number,
 const updateCar = (id: number, name: string, color: string) => (dispatch: Dispatch<any>) => {
   garageAPI.updateCar(id, name, color)
     .then(data => {
-      dispatch(updateCarsList(data));
+      dispatch(updateCarsListAC(data));
     });
+};
+
+const generateNCars = (n: number, cars: CarType[], totalCars: number, limit = 5) => (dispatch: Dispatch<any>) => {
+  let totalClone = totalCars;
+  const carsClone = [...cars];
+  for (let i = 0; i < n; i ++) {
+    const name = generateCarName();
+    const color = generateColor();
+    garageAPI.createNewCar(name, color)
+      // eslint-disable-next-line no-loop-func
+      .then(response => {
+        totalClone = totalClone + 1;
+        dispatch(setTotalCarsAC(totalClone));
+        if (carsClone.length < limit) {
+          dispatch(addCarAC(response));
+          carsClone.push({ id: carsClone.length, name, color });
+        }
+      });
+  }
 };
 
 export type GarageState = {
@@ -73,6 +92,7 @@ export type GarageState = {
   checkPgAvl: typeof checkPgAvl;
   addCar: typeof addCar;
   updateCar: typeof updateCar,
+  generateNCars: typeof generateNCars,
 };
 
 export type GarageAction = {
@@ -93,6 +113,7 @@ export const initGarageState: GarageState = {
   checkPgAvl,
   addCar,
   updateCar,
+  generateNCars,
 };
 
 const garageReducer = (state: GarageState, action: GarageAction) => {
