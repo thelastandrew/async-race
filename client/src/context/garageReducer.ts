@@ -12,6 +12,7 @@ const toggleIsFetchingCarsAC = (isFetchingCars: boolean) => ({ type: ACTION_TYPE
 const toggleIsPrevAvlAC = (isAvl: boolean) => ({ type: ACTION_TYPES.TOGGLE_IS_PREV_GARAGE_PG_AVL, payload: isAvl });
 const toggleIsNextAvlAC = (isAvl: boolean) => ({ type: ACTION_TYPES.TOGGLE_IS_NEXT_GARAGE_PG_AVL, payload: isAvl });
 const addCarAC = (car: CarType) => ({ type: ACTION_TYPES.ADD_CAR, payload: car });
+const updateCarsList = (car: CarType) => ({ type: ACTION_TYPES.UPDATE_CARS_LIST, payload: car });
 
 // Methods
 const getCars = (page: number) => (dispatch: Dispatch<any>) => {
@@ -52,6 +53,13 @@ const addCar = (name: string, color: string, cars: CarType[], totalCars: number,
     });
 };
 
+const updateCar = (id: number, name: string, color: string) => (dispatch: Dispatch<any>) => {
+  garageAPI.updateCar(id, name, color)
+    .then(data => {
+      dispatch(updateCarsList(data));
+    });
+};
+
 export type GarageState = {
   cars: CarType[];
   page: number;
@@ -64,6 +72,7 @@ export type GarageState = {
   setGaragePage: typeof setGaragePage;
   checkPgAvl: typeof checkPgAvl;
   addCar: typeof addCar;
+  updateCar: typeof updateCar,
 };
 
 export type GarageAction = {
@@ -83,6 +92,7 @@ export const initGarageState: GarageState = {
   setGaragePage,
   checkPgAvl,
   addCar,
+  updateCar,
 };
 
 const garageReducer = (state: GarageState, action: GarageAction) => {
@@ -107,6 +117,10 @@ const garageReducer = (state: GarageState, action: GarageAction) => {
     }
     case ACTION_TYPES.ADD_CAR: {
       return { ...state, cars: [...state.cars, action.payload as CarType] };
+    }
+    case ACTION_TYPES.UPDATE_CARS_LIST: {
+      const updatedList = state.cars.map(car => car.id === (action.payload as CarType).id ? action.payload as CarType : car);
+      return { ...state, cars: updatedList };
     }
     default: {
       return state;

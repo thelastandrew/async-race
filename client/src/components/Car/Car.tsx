@@ -7,17 +7,17 @@ import s from './Car.module.css';
 type CarProps = {
   car: CarType;
   deleteCar: (id: number) => void;
+  setCarToUpdate: (id: number, name: string, color: string) => void;
 }
 
-const Car = ({ car, deleteCar }: CarProps) => {
+const Car = ({ car, deleteCar, setCarToUpdate }: CarProps) => {
   const handleStart = () => console.log('start ', car.id);
   const handleStop = () => console.log('stop ', car.id);
-  const handleSelect = () => console.log('select', car.id);
 
   return (
     <div className={s.car}>
       <div className={s.carHeader}>
-        <Button handleClick={handleSelect}>Select</Button>
+        <Button handleClick={() => setCarToUpdate(car.id, car.name, car.color)}>Select</Button>
         <Button handleClick={() => deleteCar(car.id)}>Remove</Button>
         <h5 className={s.carName}>{car.name}</h5>
       </div>

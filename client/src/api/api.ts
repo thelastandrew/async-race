@@ -37,7 +37,7 @@ export const garageAPI = {
 
   updateCar: async (id: number, name: string, color: string) => {
     try {
-      const { data } = await API.put(`${endpoints.garage}/${id}`, { name, color }, {
+      const { data } = await API.put<CarType>(`${endpoints.garage}/${id}`, { name, color }, {
         headers: {
           'Content-Type': 'application/json',
         }

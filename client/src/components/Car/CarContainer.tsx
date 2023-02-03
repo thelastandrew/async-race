@@ -7,6 +7,7 @@ import { CarType } from '../../interfaces/interfaces';
 const CarContainer = ({ car }: { car: CarType }) => {
   const { state, dispatch } = useContext(AppContext);
   const { cars, page, getCars, setGaragePage } = state.garage;
+  const { setCarToUpd } = state.carToUpd;
 
   const deleteCar = (id: number) => {
     garageAPI.deleteCar(id)
@@ -17,11 +18,17 @@ const CarContainer = ({ car }: { car: CarType }) => {
           getCars(page)(dispatch);
         }
       });
-  }
+  };
+
+  const setCarToUpdate = (id: number, name: string, color: string) => {
+    setCarToUpd(id, name, color)(dispatch);
+  };
+
   return (
     <Car
       car={car}
       deleteCar={deleteCar}
+      setCarToUpdate={setCarToUpdate}
     />
   );
 };
